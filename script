@@ -1,0 +1,45 @@
+echo -e "\n==================================="
+echo -e "\n  -- Atualizando Reposítorio --  \n"
+echo -e "===================================\n"
+sudo dnf update -y
+
+echo -e "\n==================================="
+echo -e  "\n    -- Aplicando atualização -- \n"
+echo -e "===================================\n"
+sudo dnf upgrade -y
+
+echo -e "\n==================================="
+echo -e "\n      -- Limpeza de cache --    \n"
+echo -e "===================================\n"
+sudo dnf clean all  
+
+echo -e "\n==================================="
+echo -e "\n      -- Atualização Flatpak --    \n"
+echo -e "===================================\n"
+sudo flatpak update -y
+
+echo -e "\n=================================="
+echo -e  "n  -- Reniciar notebook --  \n"
+echo -e "===================================="
+
+read -r -p "Deseja reinicar o notebook (y/n): " execucao
+
+case $execucao in
+
+	y | Y | yes | YES | Yes )
+	echo "Reiniciando sistema..."
+	systemctl reboot
+	;;
+	
+	n | N | no | No | NO )
+	echo "Reiniciamento cancelado..."
+	exit 1
+	;;
+
+	*)
+	echo "Entrada inválida. Por favor digite Y ou N para reiciniar ou não."
+	exit 1
+	;;
+esac 
+
+echo -e "\n == LIMPEZA E ATUALIZAÇÃO APLICADA COM SUCESSO =="
